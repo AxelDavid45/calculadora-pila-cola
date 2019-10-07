@@ -1,8 +1,8 @@
 package pila;
 
 public class Pila<E> {
-    private Object[] arreglo;
-    private int tope, tamano;
+    protected Object[] arreglo;
+    protected int tope, tamano;
 
     public Pila() {
         this.arreglo = null;
