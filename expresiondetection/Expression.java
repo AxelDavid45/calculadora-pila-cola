@@ -119,7 +119,8 @@ public class Expression {
         //1. Examinar expresion elemento a elemento: repetir los pasos 2 y 3 para cada elemento.
         while (apuntador <= this.posfija.getSize()) {
             apuntador++;
-            System.out.println("");
+            
+            if ((this.posfija.pop()).getClass(Character))
             caracter = ((Char)this.posfija.pop()).getValue();
             
             //2. Si el elemento es un operando, meterlo en la pila.
