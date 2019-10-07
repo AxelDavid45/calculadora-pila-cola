@@ -7,7 +7,7 @@ import expresiondetection.Expression;
  */
 public class testExpresion {
     public static void main(String[] args) {
-        Expression expresion = new Expression("(5+6)/11");
+        Expression expresion = new Expression("5+6/11");
         System.out.println(expresion.eval());
     }
     

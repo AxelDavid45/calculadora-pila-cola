@@ -1,9 +1,10 @@
 package calculadora;
 
 import javax.swing.JFrame;
+import expresiondetection.Expression;
 
 public class calculadoraform extends javax.swing.JFrame {
-    
+    String resultado;
 
     /**
      * Creates new form calculadoraform
@@ -40,12 +41,14 @@ public class calculadoraform extends javax.swing.JFrame {
         BotonIgual = new javax.swing.JButton();
         DeleteAll = new javax.swing.JButton();
         Pantalla = new javax.swing.JTextField();
+        PotenciaBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calculadora");
         setLocationByPlatform(true);
         setResizable(false);
 
+        Number7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Number7.setText("7");
         Number7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,6 +56,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        Number8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Number8.setText("8");
         Number8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +64,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        Numero9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Numero9.setText("9");
         Numero9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +72,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        Numero4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Numero4.setText("4");
         Numero4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +80,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        Numero5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Numero5.setText("5");
         Numero5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +88,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        Numero6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Numero6.setText("6");
         Numero6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +96,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        Numero1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Numero1.setText("1");
         Numero1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +104,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        Numero2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Numero2.setText("2");
         Numero2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +112,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        Numero3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Numero3.setText("3");
         Numero3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +120,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        Numero0.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Numero0.setText("0");
         Numero0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +128,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        SumaBoton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         SumaBoton.setText("+");
         SumaBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,6 +136,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        RestaBoton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         RestaBoton.setText("-");
         RestaBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +144,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        MultipliBoton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         MultipliBoton.setText("*");
         MultipliBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +152,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        DivisionBoton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         DivisionBoton.setText("/");
         DivisionBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +160,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        IzquierdoParentesis.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         IzquierdoParentesis.setText("(");
         IzquierdoParentesis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,6 +168,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        DerechoParentesis.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         DerechoParentesis.setText(")");
         DerechoParentesis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +176,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
+        BotonIgual.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         BotonIgual.setText("=");
         BotonIgual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,6 +194,14 @@ public class calculadoraform extends javax.swing.JFrame {
         Pantalla.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Pantalla.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        PotenciaBoton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        PotenciaBoton.setText("^");
+        PotenciaBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PotenciaBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,6 +209,7 @@ public class calculadoraform extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Pantalla, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -222,10 +250,14 @@ public class calculadoraform extends javax.swing.JFrame {
                                 .addComponent(SumaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DivisionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DeleteAll, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(Pantalla, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(DeleteAll, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(PotenciaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DivisionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -246,13 +278,14 @@ public class calculadoraform extends javax.swing.JFrame {
                     .addComponent(Numero5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Numero6, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(RestaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DeleteAll, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PotenciaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Numero1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Numero2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Numero3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MultipliBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MultipliBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeleteAll, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Numero0, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,12 +379,20 @@ public class calculadoraform extends javax.swing.JFrame {
     }//GEN-LAST:event_DerechoParentesisActionPerformed
 
     private void BotonIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIgualActionPerformed
-       //TODO action equals botons
+       Expression expresion = new Expression(Pantalla.getText());
+       resultado = String.valueOf(expresion.eval());
+       Pantalla.setText(resultado);
+       
     }//GEN-LAST:event_BotonIgualActionPerformed
 
     private void DeleteAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteAllActionPerformed
         Pantalla.setText("");
     }//GEN-LAST:event_DeleteAllActionPerformed
+
+    private void PotenciaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PotenciaBotonActionPerformed
+        String textoIngresado = Pantalla.getText() + PotenciaBoton.getText();
+        Pantalla.setText(textoIngresado);
+    }//GEN-LAST:event_PotenciaBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -408,6 +449,7 @@ public class calculadoraform extends javax.swing.JFrame {
     private javax.swing.JButton Numero6;
     private javax.swing.JButton Numero9;
     private javax.swing.JTextField Pantalla;
+    private javax.swing.JButton PotenciaBoton;
     private javax.swing.JButton RestaBoton;
     private javax.swing.JButton SumaBoton;
     // End of variables declaration//GEN-END:variables
