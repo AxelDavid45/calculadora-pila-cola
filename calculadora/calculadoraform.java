@@ -191,7 +191,7 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
-        Pantalla.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Pantalla.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Pantalla.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         PotenciaBoton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
