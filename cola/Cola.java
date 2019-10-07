@@ -1,7 +1,7 @@
 package cola;
 import pila.Pila;
 
-public class Cola<E> extends Pila {
+public class Cola<E> extends Pila<E> {
     public Cola(){
         super();
     }
