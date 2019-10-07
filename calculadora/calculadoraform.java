@@ -43,8 +43,9 @@ public class calculadoraform extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calculadora");
+        setLocationByPlatform(true);
+        setResizable(false);
 
-        Number7.setBackground(new java.awt.Color(255, 255, 204));
         Number7.setText("7");
         Number7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +67,6 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
-        Numero4.setBackground(new java.awt.Color(255, 255, 204));
         Numero4.setText("4");
         Numero4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +88,6 @@ public class calculadoraform extends javax.swing.JFrame {
             }
         });
 
-        Numero1.setBackground(new java.awt.Color(255, 255, 204));
         Numero1.setText("1");
         Numero1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -307,48 +306,47 @@ public class calculadoraform extends javax.swing.JFrame {
     }//GEN-LAST:event_Numero2ActionPerformed
 
     private void Numero3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Numero3ActionPerformed
-        String textoIngresado = Pantalla.getText() + Number7.getText();
+        String textoIngresado = Pantalla.getText() + Numero3.getText();
         Pantalla.setText(textoIngresado);
     }//GEN-LAST:event_Numero3ActionPerformed
 
     private void Numero0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Numero0ActionPerformed
-        String textoIngresado = Pantalla.getText() + Number7.getText();
+        String textoIngresado = Pantalla.getText() + Numero0.getText();
         Pantalla.setText(textoIngresado);
     }//GEN-LAST:event_Numero0ActionPerformed
 
     private void SumaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SumaBotonActionPerformed
-        String textoIngresado = Pantalla.getText() + Number7.getText();
+        String textoIngresado = Pantalla.getText() + SumaBoton.getText();
         Pantalla.setText(textoIngresado);
     }//GEN-LAST:event_SumaBotonActionPerformed
 
     private void RestaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestaBotonActionPerformed
-        String textoIngresado = Pantalla.getText() + Number7.getText();
+        String textoIngresado = Pantalla.getText() + RestaBoton.getText();
         Pantalla.setText(textoIngresado);
     }//GEN-LAST:event_RestaBotonActionPerformed
 
     private void MultipliBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MultipliBotonActionPerformed
-        String textoIngresado = Pantalla.getText() + Number7.getText();
+        String textoIngresado = Pantalla.getText() + MultipliBoton.getText();
         Pantalla.setText(textoIngresado);
     }//GEN-LAST:event_MultipliBotonActionPerformed
 
     private void DivisionBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DivisionBotonActionPerformed
-        String textoIngresado = Pantalla.getText() + Number7.getText();
+        String textoIngresado = Pantalla.getText() + DivisionBoton.getText();
         Pantalla.setText(textoIngresado);
     }//GEN-LAST:event_DivisionBotonActionPerformed
 
     private void IzquierdoParentesisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IzquierdoParentesisActionPerformed
-        String textoIngresado = Pantalla.getText() + Number7.getText();
+        String textoIngresado = Pantalla.getText() + IzquierdoParentesis.getText();
         Pantalla.setText(textoIngresado);
     }//GEN-LAST:event_IzquierdoParentesisActionPerformed
 
     private void DerechoParentesisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DerechoParentesisActionPerformed
-        String textoIngresado = Pantalla.getText() + Number7.getText();
+        String textoIngresado = Pantalla.getText() + DerechoParentesis.getText();
         Pantalla.setText(textoIngresado);
     }//GEN-LAST:event_DerechoParentesisActionPerformed
 
     private void BotonIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIgualActionPerformed
-        String textoIngresado = Pantalla.getText() + Number7.getText();
-        Pantalla.setText(textoIngresado);
+       //TODO action equals botons
     }//GEN-LAST:event_BotonIgualActionPerformed
 
     private void DeleteAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteAllActionPerformed
