@@ -1,7 +1,7 @@
 package types;
 
 public class Char {
-    private char x;
+    protected char x;
 
     public Char() {
         x = '\0';

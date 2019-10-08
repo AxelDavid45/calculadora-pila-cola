@@ -66,23 +66,23 @@ public class Expression {
             char caracter = infija.charAt(apuntador);
             //2. Si es un operando, pasarlo a la expresión postfija.
             if (esOperando(caracter))
-                this.posfija.push(new Char(caracter));
+                this.posfija.push((Character)caracter);
                 //3. Si es operador:
             else if (esOperador(caracter)) {
                 //3.1. Si la pila está vacía, meterlo en la pila. Repetir a partir de 1.
                 if (operadores.isEmpty())
-                    operadores.push(new Char(caracter));
+                    operadores.push((Character)caracter);
                     //3.2. Si la pila no está vacía:
                 else {
                     //3.2.1 Si la prioridad del operador leído es mayor que la prioridad del operador cima de la
                     //pila, meterlo en la pila y repetir a partir de 1.
-                    if (prioridadOut(caracter) > prioridadIn(((Char) operadores.getLast()).getValue())) {
-                        operadores.push(new Char(caracter));
+                    if (prioridadOut(caracter) > prioridadIn(((Character) operadores.getLast()))) {
+                        operadores.push((Character)caracter);
                         // 3.2.2 Si la prioridad del operador es menor o igual que la prioridad del operador de la cima de
                         //la pila, sacar el operador cima de la pila y pasarlo a la expresión postfija, volver a 3.
                     } else {
-                        this.posfija.push(((Char) operadores.pop()).getValue());
-                        operadores.push(new Char(caracter));
+                        this.posfija.push(((Character) operadores.pop()));
+                        operadores.push((Character)caracter);
                     }
                 }
 
@@ -92,8 +92,8 @@ public class Expression {
             else if (esParentesisDerecho(caracter)) {
                 //4.1. Sacar el operador cima y pasarlo a la expresión postfija.
                 do {
-                    this.posfija.push(((Char) operadores.pop()).getValue());
-                } while (prioridadIn(((Char) operadores.getLast()).getValue()) != 0);
+                    this.posfija.push(((Character) operadores.pop()));
+                } while (prioridadIn(((Character) operadores.getLast())) != 0);
                 //4.2. Si el nuevo operador cima es paréntesis izquierdo, suprimir el elemento cima.
                 operadores.pop();
                 //4.3. Si la cima no es paréntesis izquierdo, volver a 4.1.
@@ -102,9 +102,9 @@ public class Expression {
             apuntador++;
         }
         //5. Si quedan elementos en la pila, pasarlos a la expresión postfija.
-        Char aux;
-        while ((aux = (Char) operadores.pop()) != null)
-            this.posfija.push(aux.getValue());
+        Character aux;
+        while ((aux = (Character) operadores.pop()) != null)
+            this.posfija.push(aux);
 
         return this.posfija;
     }
@@ -114,14 +114,13 @@ public class Expression {
         Pila operandos = new Pila(this.infija.length());
         int apuntador = 0;
         char caracter;
-        Character aux;
 
         //1. Examinar expresion elemento a elemento: repetir los pasos 2 y 3 para cada elemento.
-        while (apuntador <= this.posfija.getSize()) {
-            apuntador++;
-            
-            if ((this.posfija.pop()).getClass(Character))
-            caracter = ((Char)this.posfija.pop()).getValue();
+        while (apuntador < this.posfija.getSize()) {
+            if(this.posfija.isEmpty()) break;
+            else {
+                caracter = ((Character) this.posfija.pop());
+            }
             
             //2. Si el elemento es un operando, meterlo en la pila.
             if (esOperando(caracter))
@@ -138,7 +137,7 @@ public class Expression {
                 operandos.push(new Int(z));
 
             }
-            
+         apuntador++;   
 
         }
 //4. El resultado de la evaluación de la expresión está en el elemento cima de la pila.
