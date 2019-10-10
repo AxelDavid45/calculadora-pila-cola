@@ -42,6 +42,4 @@ public class Nodo<E> {
     public Nodo getNext() {
         return this.next;
     }
-    
-    
 }
