@@ -2,7 +2,7 @@ package listaenlazada;
 
 public class ColaL extends LinkedList {
     public Nodo pop() {
-         Nodo aux = this.start;
+        Nodo aux = this.start;
         if (this.isEmpty())
             return null;
         else {
@@ -13,7 +13,8 @@ public class ColaL extends LinkedList {
                 else
                     this.start.setPrevious(null);
             }
+            this.elements--;
+            return aux;
         }
-        return aux;
     }
 }

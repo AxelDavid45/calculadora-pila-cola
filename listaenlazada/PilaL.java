@@ -1,14 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package listaenlazada;
 
-/**
- *
- * @author axele
- */
-public class PilaL {
-    
+public class PilaL extends LinkedList {    
+    public Nodo pop() {
+        if (this.isEmpty())
+            return null;
+        else if(this.start.getNext() != null && this.end.getPrevious() != null) {
+            Nodo aux = this.end;
+            this.end = this.end.getPrevious();
+            this.end.setNext(null);
+            this.elements--;
+            return aux;
+        } else {
+            this.elements--;
+            return this.end;
+        }
+    }
 }

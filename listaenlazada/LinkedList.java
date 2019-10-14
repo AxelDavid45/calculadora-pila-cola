@@ -24,7 +24,7 @@ public class LinkedList {
             this.elements = 1;
         } else {
             this.end.setNext(e);
-            e.setPrevious(e);
+            e.setPrevious(this.end);
             this.end = this.end.getNext();
             this.elements++;
         }
@@ -56,15 +56,15 @@ public class LinkedList {
             }            
             //Caso 1 elemento inicial
             if (aux == this.start) {
-                this.start = this.start.getNext();
+                this.start = this.start.getNext(); //El inicio ahora pasa a ser el siguiente
                 if (this.start == null)
-                    this.end = null;
+                    this.end = null; //El end tambien porque no hay nada en la lista
                 else
-                    this.start.setPrevious(null);
-            } else if (aux == this.end) {
+                    this.start.setPrevious(null); //Si el inicio no es nulo ahora el anterior es nulo
+            } else if (aux == this.end) { //Cuando el elemento es el ultimo
                 this.end = this.end.getPrevious();
                this.end.setNext(null);
-            } else {
+            } else { //Cuando esta en el medio
                 Nodo aux2;
                 aux2 = aux.getNext();
                 aux2.setPrevious(aux.getPrevious());
