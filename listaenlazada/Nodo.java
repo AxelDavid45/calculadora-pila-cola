@@ -1,8 +1,8 @@
 package listaenlazada;
 
 public class Nodo<E> {
-    protected Object dato;
-    protected Nodo next, previous;
+    protected Object dato; //objeto para guardar el tipo de cualquier dato
+    protected Nodo next, previous; //Enlaces a nodos
     
     public Nodo() {
         this.dato = null;

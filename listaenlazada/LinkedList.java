@@ -1,9 +1,10 @@
 package listaenlazada;
 
 public class LinkedList {
-    Nodo start, end;
-    int elements;
+    Nodo start, end; //Nodo iniciales fundamentales
+    int elements; //Elementos de la lista
     
+   
     public LinkedList() {
         this.start = this.end = null;
         this.elements = 0;
@@ -30,6 +31,9 @@ public class LinkedList {
         }
     }
     
+    /*
+        Metodo que devuelve el nodo sin eliminarlo
+    */
     public Nodo getAt(int x) {
         if (this.isEmpty() || x > this.elements)
             return null;
@@ -44,6 +48,9 @@ public class LinkedList {
         }  
     }
     
+    /*
+        Metodo que retorna un elemento pero lo elimina de la lista
+    */
     public Nodo pop(int x) {
         if (this.isEmpty() || x > this.elements)
             return null;

@@ -1,12 +1,12 @@
 package expresiondetection;
 
-import pila.Pila;
-import types.*;
-import cola.Cola;
-import java.lang.Character;
+import types.*; //Agregamos el paquete de tipos de datos a usar
+import listaenlazada.*; //Agregamos la pilaL y ColaL
+
 public class Expression {
+
     String infija;
-    Cola posfija;
+    ColaL posfija;
 
     public Expression() {
         infija = null;
@@ -15,9 +15,12 @@ public class Expression {
 
     public Expression(String in) {
         infija = in;
-        this.posfija = new Cola(in.length());
+        this.posfija = new ColaL();
     }
 
+    /*
+        Metodo que obtiene prioridad de un operador dentro de la pila (necesario para el algoritmo)
+    */
     public int prioridadIn(char character) {
         switch (character) {
             case '(':
@@ -36,7 +39,10 @@ public class Expression {
                 return 4;
         }
     }
-
+    
+    /*
+        Metodo que obtiene prioridad de un operador fuera de la pila (necesario para el algoritmo)
+    */
     public int prioridadOut(char character) {
         switch (character) {
             case '(':
@@ -55,96 +61,96 @@ public class Expression {
                 return 6;
         }
     }
-
-
-    public Cola aposfija() {
+    
+    /*
+        Metodo que convierte la expresion infija a postfija
+    */
+    public ColaL aposfija() {
         int apuntador = 0;
-        Pila operadores = new Pila(this.infija.length());
+        PilaL operadores = new PilaL();
 
         while (apuntador < this.infija.length()) {
-            //1. Obtener caracteres de la expresión y repetir los pasos 2 al 4 para cada carácter.
+            //Obtenemos caracter por caracter de la expresión
             char caracter = infija.charAt(apuntador);
-            //2. Si es un operando, pasarlo a la expresión postfija.
-            if (esOperando(caracter))
-                this.posfija.push((Character)caracter);
-                //3. Si es operador:
+            
+            if (esOperando(caracter)) {
+                //Pasarlo a la expresión postfija.
+                this.posfija.push(new Nodo((Character) caracter));
+            } 
             else if (esOperador(caracter)) {
-                //3.1. Si la pila está vacía, meterlo en la pila. Repetir a partir de 1.
-                if (operadores.isEmpty())
-                    operadores.push((Character)caracter);
-                    //3.2. Si la pila no está vacía:
+                if (operadores.isEmpty()) {
+                    //Metemos el primer elemento de la expresion en la pila
+                    operadores.push(new Nodo((Character) caracter));
+                }
                 else {
-                    //3.2.1 Si la prioridad del operador leído es mayor que la prioridad del operador cima de la
-                    //pila, meterlo en la pila y repetir a partir de 1.
-                    if (prioridadOut(caracter) > prioridadIn(((Character) operadores.getLast()))) {
-                        operadores.push((Character)caracter);
-                        // 3.2.2 Si la prioridad del operador es menor o igual que la prioridad del operador de la cima de
-                        //la pila, sacar el operador cima de la pila y pasarlo a la expresión postfija, volver a 3.
+                    if (prioridadOut(caracter) > prioridadIn(((Character) operadores.getAt(operadores.getLenght()).getDato()))) {
+                        operadores.push(new Nodo((Character) caracter));
                     } else {
-                        this.posfija.push(((Character) operadores.pop()));
-                        operadores.push((Character)caracter);
+                        //Pasamos el elemento a la cola para la expresion posfija
+                        this.posfija.push(new Nodo(((Character) operadores.pop().getDato())));
+                        operadores.push(new Nodo((Character) caracter));
                     }
                 }
 
             }
-
-            //4. Si es paréntesis derecho:
             else if (esParentesisDerecho(caracter)) {
-                //4.1. Sacar el operador cima y pasarlo a la expresión postfija.
                 do {
-                    this.posfija.push(((Character) operadores.pop()));
-                } while (prioridadIn(((Character) operadores.getLast())) != 0);
-                //4.2. Si el nuevo operador cima es paréntesis izquierdo, suprimir el elemento cima.
+                    //Sacamos el operador de la cima y hacemos push a la expresión postfija
+                    this.posfija.push(new Nodo(((Character) operadores.pop().getDato())));
+                    
+                } while (prioridadIn(((Character) operadores.getAt(operadores.getLenght()).getDato())) != 0);
+                //Si el nuevo operador de la cima es un parentesis izquierdo suprimimos el elemento de la cima
                 operadores.pop();
-                //4.3. Si la cima no es paréntesis izquierdo, volver a 4.1.
+                
             }
-            //4.4. Volver a partir de 1.
+            
             apuntador++;
         }
-        //5. Si quedan elementos en la pila, pasarlos a la expresión postfija.
-        Character aux;
-        while ((aux = (Character) operadores.pop()) != null)
-            this.posfija.push(aux);
+
+        while (operadores.getLenght() != 0) {
+            //Pasamos los elementos restantes de la pila a la expresion
+            Character aux;
+            aux = (Character) operadores.pop().getDato();
+            this.posfija.push(new Nodo(aux));
+        }
 
         return this.posfija;
     }
 
-    public int eval() {
-        this.aposfija();
-        Pila operandos = new Pila(this.infija.length());
-        int apuntador = 0;
+    /*
+        Metodo que evalua la expresion postfija de acuerdo a algoritmo libro joyanes
+    */
+    public int evaluarExpresion() {
+        this.aposfija(); //Llamamos el metodo para que posfija se llene
+        PilaL operandos = new PilaL();
         char caracter;
+        
+        while (this.posfija.getLenght() != 0) {
+            //Obtenemos caracter por caracter
+            caracter = ((Character) this.posfija.pop().getDato());
 
-        //1. Examinar expresion elemento a elemento: repetir los pasos 2 y 3 para cada elemento.
-        while (apuntador < this.posfija.getSize()) {
-            if(this.posfija.isEmpty()) break;
-            else {
-                caracter = ((Character) this.posfija.pop());
+            if (esOperando(caracter)) {
+                operandos.push(new Nodo(new Int(Integer.parseInt("" + caracter))));
             }
-            
-            //2. Si el elemento es un operando, meterlo en la pila.
-            if (esOperando(caracter))
-                operandos.push(new Int(Integer.parseInt("" + caracter)));
-                //3. Si el elemento es un operador, se simboliza con &, entonces:
             else {
                 char amperzan = caracter;
-                //3.1 Sacar los dos elementos superiores de la pila, que se denominarán b y a respectivamente.
-                int b = ((Int) operandos.pop()).getValue();
-                int a = ((Int) operandos.pop()).getValue();
-                //3.2 Evaluar a & b, el resultado es z = a & b.
+                //Sacamos dos elementos para evaluarlos
+                int b = ((Int) operandos.pop().getDato()).getValue();
+                int a = ((Int) operandos.pop().getDato()).getValue();
+                //Llamamos el metodo operacion que nos devuelve el resultado
                 int z = operacion(amperzan, b, a);
-                //3.3 El resultado z, meterlo en la pila. Repetir a partir del paso 1.
-                operandos.push(new Int(z));
+                //El resultado de la operacion lo metemos en la pila
+                operandos.push(new Nodo(new Int(z)));
 
             }
-         apuntador++;   
-
         }
-//4. El resultado de la evaluación de la expresión está en el elemento cima de la pila.
-        return ((Int) operandos.pop()).getValue();
-//5. Fin del algoritmo.
+        //Sacamos el elemento porque el ultimo es el resultado
+        return ((Int) operandos.pop().getDato()).getValue();
     }
 
+    /*
+        Metodo que evalua dos numeros dependiendo el operador
+    */
     private int operacion(char amperzan, int b, int a) {
         switch (amperzan) {
             case '^':
@@ -161,36 +167,36 @@ public class Expression {
                 return 0;
         }
     }
-
+    
+    /*
+        Metodo que comprueba si es un numero del 0-9
+    */
     private boolean esOperando(char caracter) {
-        if (caracter == '0' || caracter == '1' || caracter == '2' || caracter == '3' ||
-                caracter == '4' || caracter == '5' || caracter == '6' || caracter == '7' ||
-                caracter == '8' || caracter == '9')
-            return true;
-        else
-            return false;
+        return caracter == '0' || caracter == '1' || caracter == '2' || caracter == '3'
+                || caracter == '4' || caracter == '5' || caracter == '6' || caracter == '7'
+                || caracter == '8' || caracter == '9';
     }
 
+    /*
+        Metodo que comprueba que el caracter sea un operador valido
+    */
     private boolean esOperador(char caracter) {
-        if (caracter == '+' || caracter == '-' || caracter == '*' ||
-                caracter == '/' || caracter == '^' || caracter == '(')
-            return true;
-        else
-            return false;
+        return caracter == '+' || caracter == '-' || caracter == '*'
+                || caracter == '/' || caracter == '^' || caracter == '(';
     }
 
+    /*
+        Metodo que comprueba si es un parentesis derecho(necesario para el algoritmo)
+    */
     private boolean esParentesisDerecho(char caracter) {
-        if (caracter == ')')
-            return true;
-        else
-            return false;
+        return caracter == ')';
     }
 
     public String getInfija() {
         return infija;
     }
 
-    public Cola getPosfija() {
+    public ColaL getPosfija() {
         return posfija;
     }
 }

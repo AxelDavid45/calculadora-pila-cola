@@ -6,12 +6,7 @@ public class Char {
     public Char() {
         x = '\0';
     }
-    
-    
-    public void prueba() {
         
-    }
-    
     public Char(char x) {
         this.x = x;
     }

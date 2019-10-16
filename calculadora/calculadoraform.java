@@ -4,10 +4,10 @@ import javax.swing.JFrame;
 import expresiondetection.Expression;
 
 public class calculadoraform extends javax.swing.JFrame {
-    String resultado;
+    String resultado; //Propiedad para almacenar los resultados de las operaciones
 
     /**
-     * Creates new form calculadoraform
+     Crea el form de calculadora
      */
     public calculadoraform() {
         initComponents();
@@ -379,8 +379,11 @@ public class calculadoraform extends javax.swing.JFrame {
     }//GEN-LAST:event_DerechoParentesisActionPerformed
 
     private void BotonIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIgualActionPerformed
-       Expression expresion = new Expression(Pantalla.getText());
-       resultado = String.valueOf(expresion.eval());
+       //Le pasamos la expresion obtenida en la pantalla
+        Expression expresion = new Expression(Pantalla.getText());
+       //Casteamos el resultado a string
+       resultado = String.valueOf(expresion.evaluarExpresion());
+       //Mostramos el resultado
        Pantalla.setText(resultado);
        
     }//GEN-LAST:event_BotonIgualActionPerformed

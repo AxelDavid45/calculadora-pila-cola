@@ -16,16 +16,16 @@ public class testExpresion {
 //        l.push(n3);
 //        System.out.println("Longitud: "+ l.getLenght());
 
-        ColaL cola = new ColaL();
-        cola.push(n1);
-        cola.push(n2);
-        cola.push(n3);
-        cola.push(n4);
-        
-        System.out.println("first " + cola.pop().getDato());
-        System.out.println("first " + cola.pop().getDato());
-        System.out.println("first " + cola.pop().getDato());
-        System.out.println("first " + cola.pop().getDato());
+//        ColaL cola = new ColaL();
+//        cola.push(n1);
+//        cola.push(n2);
+//        cola.push(n3);
+//        cola.push(n4);
+//        
+//        System.out.println("first " + cola.pop().getDato());
+//        System.out.println("first " + cola.pop().getDato());
+//        System.out.println("first " + cola.pop().getDato());
+//        System.out.println("first " + cola.pop().getDato());
 
 //          PilaL pi = new PilaL();
 ////          pi.push(n1);
@@ -35,7 +35,9 @@ public class testExpresion {
 //          System.out.println("last: " + pi.pop().getDato());
 //          System.out.println("last: " + pi.pop().getDato());
 //          System.out.println("last: " + pi.pop().getDato());
-////          System.out.println("last: " + pi.pop().getDato());
+////          System.out.println("last: " + pi.pop().getDato());    
+        Expression e = new Expression("(5*2)/2");
+        System.out.println(e.evaluarExpresion());
     }
     
 }
