@@ -20,7 +20,7 @@ public class Expression {
 
     /*
         Metodo que obtiene prioridad de un operador dentro de la pila (necesario para el algoritmo)
-    */
+     */
     public int prioridadIn(char character) {
         switch (character) {
             case '(':
@@ -39,10 +39,10 @@ public class Expression {
                 return 4;
         }
     }
-    
+
     /*
         Metodo que obtiene prioridad de un operador fuera de la pila (necesario para el algoritmo)
-    */
+     */
     public int prioridadOut(char character) {
         switch (character) {
             case '(':
@@ -61,10 +61,10 @@ public class Expression {
                 return 6;
         }
     }
-    
+
     /*
         Metodo que convierte la expresion infija a postfija
-    */
+     */
     public ColaL aposfija() {
         int apuntador = 0;
         PilaL operadores = new PilaL();
@@ -72,17 +72,15 @@ public class Expression {
         while (apuntador < this.infija.length()) {
             //Obtenemos caracter por caracter de la expresión
             char caracter = infija.charAt(apuntador);
-            
+
             if (esOperando(caracter)) {
                 //Pasarlo a la expresión postfija.
                 this.posfija.push(new Nodo((Character) caracter));
-            } 
-            else if (esOperador(caracter)) {
+            } else if (esOperador(caracter)) {
                 if (operadores.isEmpty()) {
                     //Metemos el primer elemento de la expresion en la pila
                     operadores.push(new Nodo((Character) caracter));
-                }
-                else {
+                } else {
                     if (prioridadOut(caracter) > prioridadIn(((Character) operadores.getAt(operadores.getLenght()).getDato()))) {
                         operadores.push(new Nodo((Character) caracter));
                     } else {
@@ -92,18 +90,17 @@ public class Expression {
                     }
                 }
 
-            }
-            else if (esParentesisDerecho(caracter)) {
-                do {
+            } else if (esParentesisDerecho(caracter)) {
+                while (prioridadIn(((Character) operadores.getAt(operadores.getLenght()).getDato())) != 0) {
                     //Sacamos el operador de la cima y hacemos push a la expresión postfija
                     this.posfija.push(new Nodo(((Character) operadores.pop().getDato())));
-                    
-                } while (prioridadIn(((Character) operadores.getAt(operadores.getLenght()).getDato())) != 0);
+
+                }
                 //Si el nuevo operador de la cima es un parentesis izquierdo suprimimos el elemento de la cima
                 operadores.pop();
-                
+
             }
-            
+
             apuntador++;
         }
 
@@ -119,20 +116,19 @@ public class Expression {
 
     /*
         Metodo que evalua la expresion postfija de acuerdo a algoritmo libro joyanes
-    */
+     */
     public int evaluarExpresion() {
         this.aposfija(); //Llamamos el metodo para que posfija se llene
         PilaL operandos = new PilaL();
         char caracter;
-        
+
         while (this.posfija.getLenght() != 0) {
             //Obtenemos caracter por caracter
             caracter = ((Character) this.posfija.pop().getDato());
 
             if (esOperando(caracter)) {
                 operandos.push(new Nodo(new Int(Integer.parseInt("" + caracter))));
-            }
-            else {
+            } else {
                 char amperzan = caracter;
                 //Sacamos dos elementos para evaluarlos
                 int b = ((Int) operandos.pop().getDato()).getValue();
@@ -150,7 +146,7 @@ public class Expression {
 
     /*
         Metodo que evalua dos numeros dependiendo el operador
-    */
+     */
     private int operacion(char amperzan, int b, int a) {
         switch (amperzan) {
             case '^':
@@ -167,10 +163,10 @@ public class Expression {
                 return 0;
         }
     }
-    
+
     /*
         Metodo que comprueba si es un numero del 0-9
-    */
+     */
     private boolean esOperando(char caracter) {
         return caracter == '0' || caracter == '1' || caracter == '2' || caracter == '3'
                 || caracter == '4' || caracter == '5' || caracter == '6' || caracter == '7'
@@ -179,7 +175,7 @@ public class Expression {
 
     /*
         Metodo que comprueba que el caracter sea un operador valido
-    */
+     */
     private boolean esOperador(char caracter) {
         return caracter == '+' || caracter == '-' || caracter == '*'
                 || caracter == '/' || caracter == '^' || caracter == '(';
@@ -187,7 +183,7 @@ public class Expression {
 
     /*
         Metodo que comprueba si es un parentesis derecho(necesario para el algoritmo)
-    */
+     */
     private boolean esParentesisDerecho(char caracter) {
         return caracter == ')';
     }

@@ -36,7 +36,7 @@ public class testExpresion {
 //          System.out.println("last: " + pi.pop().getDato());
 //          System.out.println("last: " + pi.pop().getDato());
 ////          System.out.println("last: " + pi.pop().getDato());    
-        Expression e = new Expression("(5*2)/2");
+        Expression e = new Expression("((5+3))");
         System.out.println(e.evaluarExpresion());
     }
     
